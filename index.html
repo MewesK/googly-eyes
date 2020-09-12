@@ -54,6 +54,11 @@
                 let rotationDegrees = (radianDegrees * (180/ Math.PI) * -1) + 180;
                 eyes.style.transform = `rotate(${rotationDegrees}deg)`;
             });
+        }); 
+        window.addEventListener('keyup', (e) => {
+            if(e.keyCode === 32 || e.key === ' ') {
+                document.getElementById('foreground').src = 'foreground2.png';
+            }
         });
     </script>
 </body>
