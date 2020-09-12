@@ -1,0 +1,60 @@
+<html>
+<head>
+    <style>
+        #face {
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+        #foreground {
+            position: absolute;
+            top: 92px;
+            left: 71px;
+        }
+        .left { 
+            position: absolute;
+            top: 110px;
+            left: 88px;
+        }
+        .right { 
+            position: absolute;
+            top: 101px;
+            left: 143px;
+        }
+        .pupil { 
+            border-radius: 50%;
+            background: #ffffff;
+            width: 16px;
+            height: 16px;
+            position: relative;
+            left: 25%;
+            transform-origin: bottom;
+        }
+    </style>
+</head>
+<body>
+    <div id="face">
+        <img src="background.png">
+        <div class="left eye">
+            <div class="pupil"></div>
+        </div>
+        <div class="right eye">
+            <div class="pupil"></div>
+        </div>
+        <img id="foreground" src="foreground.png">
+    </div>
+    <script>
+        window.addEventListener('mousemove', (e) => {
+            document.querySelectorAll('.pupil').forEach(function(eyes) {
+                let mouseX = (eyes.getBoundingClientRect().left); 
+                let mouseY = (eyes.getBoundingClientRect().top);
+                let radianDegrees = Math.atan2(e.pageX - mouseX, e.pageY - mouseY);
+                let rotationDegrees = (radianDegrees * (180/ Math.PI) * -1) + 180;
+                eyes.style.transform = `rotate(${rotationDegrees}deg)`;
+            });
+        });
+    </script>
+</body>
+</html>
